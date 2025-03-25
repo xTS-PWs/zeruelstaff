@@ -48,9 +48,9 @@ async function loadRecentBlogPosts() {
             blogGrid.innerHTML += `
                 <article class="article-card">
                     <h3>${post.title}</h3>
-                    <div class="article-date">${date.toLocaleDateString()}</div>
+                    <div class="article-date">${post.date ? new Date(post.date.toDate()).toLocaleDateString() : 'No date'}</div>
                     <p>${post.textContent?.substring(0, 150) || ''}...</p>
-                    <a href="blog/${doc.id}" class="article-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="blog-post.html?id=${doc.id}" class="article-link">Read More <i class="fas fa-arrow-right"></i></a>
                 </article>
             `;
         });

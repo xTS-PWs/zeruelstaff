@@ -21,9 +21,10 @@ async function loadComponent(elementId, componentPath) {
         }
 
         // Set active nav link based on current page
-        const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+        const currentPage = normalizePath(window.location.pathname.split('/').pop() || 'home');
         document.querySelectorAll('.nav-links a').forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
+            const linkPath = normalizePath(link.getAttribute('href'));
+            if (linkPath === currentPage) {
                 link.classList.add('active');
             } else {
                 link.classList.remove('active');
@@ -32,6 +33,11 @@ async function loadComponent(elementId, componentPath) {
     } catch (error) {
         console.error('Error loading component:', error);
     }
+}
+
+// Add path normalization for Netlify
+function normalizePath(path) {
+    return path.replace(/\.html$/, '');
 }
 
 // Load components when DOM is ready
