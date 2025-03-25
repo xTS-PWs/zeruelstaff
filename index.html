@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeruel Staff Portal - Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="theme-color" content="#D4AF37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Questrial&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="https://static.wixstatic.com/media/5f23d5_33290fbcf9484744a9f3802bd5cdb9d0~mv2.png" alt="Zeruel LLC Logo" class="logo">
+            <h1>Staff Portal</h1>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+            </form>
+            <p id="error-message"></p>
+            <button type="button" id="helpBtn" class="help-btn">
+                <i class="fas fa-question-circle"></i> Forgot Password?
+            </button>
+        </div>
+
+        <div id="helpModal" class="help-modal">
+            <div class="help-modal-content">
+                <span class="help-close">&times;</span>
+                <h2><i class="fas fa-headset"></i> Need Help?</h2>
+                <p>For password reset or account issues, please visit the Zeruel Help Center on Whatsapp.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/login.js"></script>
+    <script type="module">
+        // Add authentication check for redirect
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+        import { auth } from "./js/firebase-config.js";
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = 'home.html';
+            }
+        });
+    </script>
+</body>
+</html>

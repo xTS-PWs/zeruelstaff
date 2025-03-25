@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Center - Zeruel Staff Portal</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <!-- Add Quill CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="header"></div>
+    
+    <div class="content-section">
+        <header class="admin-header">
+            <h1><i class="fas fa-shield-alt"></i> Admin Center</h1>
+            <p>Manage announcements and blog posts</p>
+        </header>
+
+        <div class="admin-grid">
+            <div class="admin-card">
+                <h2><i class="fas fa-bullhorn"></i> Announcements</h2>
+                <div class="admin-actions">
+                    <button id="newAnnouncementBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> New Announcement
+                    </button>
+                    <a href="announcements.html" class="btn-secondary">
+                        <i class="fas fa-list"></i> Manage Announcements
+                    </a>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <h2><i class="fas fa-newspaper"></i> Blog Posts</h2>
+                <div class="admin-actions">
+                    <button id="newBlogPostBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> New Blog Post
+                    </button>
+                    <a href="posts.html" class="btn-secondary">
+                        <i class="fas fa-list"></i> Manage Posts
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="createModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle"></h2>
+                <form id="contentForm">
+                    <input type="text" id="title" placeholder="Title" required>
+                    <div id="editor">
+                        <!-- Quill editor will be initialized here -->
+                    </div>
+                    <input type="url" id="image" placeholder="Image URL (optional)">
+                    <button type="submit" class="btn-primary">Publish</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="../js/components.js"></script>
+    <script type="module" src="../js/firebase-config.js"></script>
+    <script type="module" src="../js/admin.js"></script>
+</body>
+</html>
