@@ -1,6 +1,6 @@
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+import { signInWithEmailAndPassword, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 import { doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-import { auth, db } from "./firebase-config.js";
+import { auth, db, googleProvider } from "./firebase-config.js";
 
 async function initializeUserDocument(user) {
     const userDocRef = doc(db, 'users', user.uid);
@@ -60,5 +60,16 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     } catch (error) {
         console.error('Login error:', error);
         errorMessage.textContent = error.message;
+    }
+});
+
+document.getElementById('googleSignIn').addEventListener('click', async () => {
+    try {
+        const result = await signInWithPopup(auth, googleProvider);
+        await initializeUserDocument(result.user);
+        window.location.href = 'home.html';
+    } catch (error) {
+        console.error('Google sign-in error:', error);
+        document.getElementById('error-message').textContent = error.message;
     }
 });
